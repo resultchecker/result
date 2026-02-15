@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exam Result</title>
+  <style>
+    .result-container {
+    width: 95%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+
+.exam-year {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.result-table th,
+.result-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.result-table th {
+    background-color: #f2f2f2;
+}
+
+.sgpa-row td {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.status {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.status span {
+    color: green;
+    font-weight: bold;
+}
+.student-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.student-info p {
+  margin: 5px 0;
+}
+
+.exam-year {
+  text-align: center;
+  margin: 15px 0 20px;
+  font-size: 16px;
+}
+
+
+  </style>
+</head>
+<script>
+  const params = new URLSearchParams(window.location.search);
+
+  if (
+    params.get("year") !== "2025" ||
+    params.get("month") !== "DECEMBER" ||
+    params.get("type") !== "ETE" ||
+    params.get("reg") !== "72518025" ||
+    params.get("dob") !== "2007-08-04"
+  ) {
+    alert("Unauthorized access");
+    window.location.href = "index.html";
+  }
+</script>
+
+<body>
+
+  <img src="https://resources.saylor.org/wwwresources/wp-content/uploads/20200827154514/CT-Complete-Logo-Png.png" alt="CT University Logo"
+  width="180"
+  height="80" >
+
+<div class="student-info">
+  <div class="left">
+    <p><strong>Enrollment Number:</strong> CTU2501055</p>
+    <p><strong>Student Name:</strong> CHIRAG ARORA</p>
+  </div>
+
+  <div class="right">
+    <p><strong>Course:</strong> BCA (AI)</p>
+    <p><strong>Semester:</strong> FIRST</p>
+  </div>
+</div>
+
+<p class="exam-year"><strong>Exam Year:</strong> December, 2025</p>
+
+<div class="result-container">
+    <h3 class="exam-year">Exam Year: <b>December , 2025</b></h3>
+
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Subject Code</th>
+                <th>Subject</th>
+                <th>Credit</th>
+                <th>Grade</th>
+                <th>Grade Point</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>25BCA011C01</td><td>Programming Concepts with C</td><td>3</td><td>C</td><td>5</td></tr>
+            <tr><td>2</td><td>25BCA011C02(P)</td><td>Programming Concepts with C Lab</td><td>1</td><td>A+</td><td>9</td></tr>
+            <tr><td>3</td><td>25BCA011C03</td><td>Computer Fundamentals</td><td>3</td><td>B</td><td>6</td></tr>
+            <tr><td>4</td><td>25BCA011C04</td><td>Web Technologies</td><td>3</td><td>B+</td><td>7</td></tr>
+            <tr><td>5</td><td>25BCA011C05(P)</td><td>Web Technologies Lab</td><td>1</td><td>A</td><td>8</td></tr>
+            <tr><td>6</td><td>25ENGLOAEC1</td><td>Communicative English I</td><td>3</td><td>B+</td><td>7</td></tr>
+            <tr><td>7</td><td>25LMSU0SEC2(P)</td><td>Leadership and Management Skills</td><td>3</td><td>B</td><td>6</td></tr>
+            <tr><td>8</td><td>25SOMS0MDC1</td><td>Fundamentals of Entrepreneurship</td><td>3</td><td>B</td><td>6</td></tr>
+            <tr><td>9</td><td>25DOAS0VAC1</td><td>Environment Science</td><td>3</td><td>B</td><td>6</td></tr>
+            <tr><td>10</td><td>25BCAI11E01</td><td>Python & Clean Coding</td><td>2</td><td>P</td><td>4</td></tr>
+            <tr><td>11</td><td>25BCAI11E02(P)</td><td>Python & Clean Coding Lab</td><td>2</td><td>A</td><td>8</td></tr>
+
+            <tr class="sgpa-row">
+                <td colspan="5"><b>SGPA</b></td>
+                <td><b>6.29</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="status">Status: <span>PASS</span></p>
+</div>
+
+
+</body>
+</html>
