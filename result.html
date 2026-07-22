@@ -2,488 +2,75 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>CT University Result</title>
-
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#eef2f7;
-    padding:20px;
-}
-
-.result-container{
-    width:100%;
-    max-width:1100px;
-    margin:auto;
-    background:#fff;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
-}
-
-.logo{
-    display:block;
-    margin:0 auto 20px;
-    width:220px;
-    max-width:100%;
-}
-
-.student-info{
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:20px;
-    margin-bottom:20px;
-}
-
-.student-info div{
-    flex:1;
-    min-width:250px;
-}
-
-.student-info p{
-    margin:10px 0;
-    font-size:17px;
-}
-
-.exam-year{
-    text-align:center;
-    font-size:30px;
-    font-weight:bold;
-    margin:30px 0;
-}
-
-/* Makes table responsive */
-.table-responsive{
-    width:100%;
-    overflow-x:auto;
-}
-
-.result-table{
-    width:100%;
-    min-width:900px;
-    border-collapse:collapse;
-}
-
-.result-table th,
-.result-table td{
-    border:1px solid #ccc;
-    padding:12px;
-    text-align:center;
-    font-size:15px;
-}
-
-.result-table th{
-    background:#f5f5f5;
-}
-
-.sgpa-row{
-    background:#fafafa;
-    font-weight:bold;
-}
-
-.status{
-    text-align:center;
-    margin-top:25px;
-    font-size:35px;
-    font-weight:bold;
-}
-
-.status span{
-    color:#22c55e;
-}
-
-.note{
-    margin-top:25px;
-    font-size:15px;
-}
-
-/* Mobile */
-
-@media(max-width:768px){
-
-body{
-    padding:10px;
-}
-
-.result-container{
-    padding:15px;
-}
-
-.logo{
-    width:170px;
-}
-
-.student-info{
-    display:block;
-}
-
-.student-info p{
-    font-size:20px;
-    margin:12px 0;
-}
-
-.exam-year{
-    font-size:22px;
-}
-
-.status{
-    font-size:28px;
-}
-
-.note{
-    font-size:14px;
-}
-
-}
-
+body{font-family:Arial,sans-serif;background:#eef2f7;margin:0;padding:20px}
+.card{max-width:1000px;margin:auto;background:#fff;padding:24px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.logo{text-align:center}.logo img{width:180px}
+.info{display:flex;justify-content:space-between;flex-wrap:wrap;margin:20px 0}
+.table-wrap{overflow-x:auto}
+table{width:100%;min-width:900px;border-collapse:collapse}
+th,td{border:1px solid #ccc;padding:10px;text-align:center}
+th{background:#f3f3f3}
+td:nth-child(3){text-align:left}
+.status{text-align:center;font-size:28px;font-weight:bold;margin-top:20px;color:#168a3a}
+@media(max-width:700px){.info{display:block}}
 </style>
-
 <script>
-
-const params=new URLSearchParams(window.location.search);
-
-const result=params.get("result");
-
-if(result!="2025" && result!="2026"){
-
-alert("Unauthorized Access");
-
-window.location.href="index.html";
-
+const p=new URLSearchParams(location.search);
+const r=p.get("result");
+if(r!=="2025"&&r!=="2026"){alert("Unauthorized Access");location="index.html";}
+const data={
+"2025":{sem:"FIRST",year:"December, 2025",sgpa:"6.29",rows:[
+["25BCA011C01","Programming Concepts with C",3,"C",5],
+["25BCA011C02(P)","Programming Concepts with C Lab",1,"A+",9],
+["25BCA011C03","Computer Fundamentals",3,"B",6],
+["25BCA011C04","Web Technologies",3,"B+",7],
+["25BCA011C05(P)","Web Technologies Lab",1,"A",8],
+["25ENGLOAEC1","Communicative English I",3,"B+",7],
+["25LMSU0SEC2(P)","Leadership and Management Skills",3,"B",6],
+["25SOMS0MDC1","Fundamentals of Entrepreneurship",3,"B",6],
+["25DOAS0VAC1","Environment Science",3,"B",6],
+["25BCAI11E01","Python & Clean Coding",2,"P",4],
+["25BCAI11E02(P)","Python & Clean Coding Lab",2,"A",8]
+]},
+"2026":{sem:"SECOND",year:"June, 2026",sgpa:"6.55",rows:[
+["25BCA012C01","Object Oriented Programming Using C++",3,"B",6],
+["25BCA012C02","Object Oriented Programming Using C++ Lab",1,"A",8],
+["25BCA012C03","Mathematical Structures for Computer Applications",3,"C",5],
+["25BCA012C04","Software Engineering",3,"B",6],
+["25BCA012C05","Digital Electronics and Logic Design",3,"B",6],
+["25ENGL0AEC1","Communicative English II",3,"B",6],
+["25PSUG0SEC1","Professional Skills",3,"A+",9],
+["24SOPE0VAC01","Yogic Science",3,"B",6],
+["24SOMS0VAC1","Online Marketing Fundamentals",3,"B",6],
+["25BCAI12E01","Machine Learning",2,"A",8],
+["25BCAI12E02","Machine Learning Lab",2,"A",8]
+]}
+};
+window.onload=()=>{
+let d=data[r];
+semester.textContent=d.sem; examYear.textContent=d.year;
+let h="";
+d.rows.forEach((x,i)=>h+=`<tr><td>${i+1}</td><td>${x[0]}</td><td>${x[1]}</td><td>${x[2]}</td><td>${x[3]}</td><td>${x[4]}</td></tr>`);
+h+=`<tr><td colspan="5"><b>SGPA</b></td><td><b>${d.sgpa}</b></td></tr>`;
+marks.innerHTML=h;
 }
-
 </script>
-
 </head>
-
 <body>
-
-<div class="result-container">
-
-<div class="logo">
-
-<img src="https://resources.saylor.org/wwwresources/wp-content/uploads/20200827154514/CT-Complete-Logo-Png.png" alt="CT University Logo">
-
+<div class="card">
+<div class="logo"><img src="https://resources.saylor.org/wwwresources/wp-content/uploads/20200827154514/CT-Complete-Logo-Png.png"></div>
+<div class="info">
+<div><p><b>Enrollment:</b> CTU2501055</p><p><b>Name:</b> CHIRAG ARORA</p></div>
+<div><p><b>Course:</b> BCA (AI)</p><p><b>Semester:</b> <span id="semester"></span></p></div>
 </div>
-
-<div class="student-info">
-
-<div>
-
-<p><b>Enrollment Number:</b> CTU2501055</p>
-
-<p><b>Student Name:</b> CHIRAG ARORA</p>
-
+<h2 style="text-align:center">Exam Year: <span id="examYear"></span></h2>
+<div class="table-wrap">
+<table><thead><tr><th>Sr</th><th>Subject Code</th><th>Subject</th><th>Credit</th><th>Grade</th><th>Grade Point</th></tr></thead><tbody id="marks"></tbody></table>
 </div>
-
-<div>
-
-<p><b>Course:</b> BCA (AI)</p>
-
-<p><b>Semester:</b>
-<span id="semester"></span>
-</p>
-
+<div class="status">PASS</div>
+<p style="text-align:center">This is a computer generated result.</p>
 </div>
-
-</div>
-
-<p class="exam-year">
-
-Exam Year :
-
-<span id="examYear"></span>
-
-</p>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Sr. No.</th>
-
-<th>Subject Code</th>
-
-<th>Subject</th>
-
-<th>Credit</th>
-
-<th>Grade</th>
-
-<th>Grade Point</th>
-
-</tr>
-
-</thead>
-
-<tbody id="marks">
-</tbody>
-
-</table>
-
-<p class="status">
-Status :
-<span>PASS</span>
-</p>
-
-<p class="note">
-<b>Note :</b> This is a computer generated result. No signature is required.
-</p>
-
-</div>
-
-<script>
-
-let semester="";
-let examYear="";
-let table="";
-
-if(result=="2025"){
-
-semester="FIRST";
-examYear="December, 2025";
-
-table=`
-
-<tr>
-<td>1</td>
-<td>25BCA011C01</td>
-<td>Programming Concepts with C</td>
-<td>3</td>
-<td>C</td>
-<td>5</td>
-</tr>
-
-<tr>
-<td>2</td>
-<td>25BCA011C02(P)</td>
-<td>Programming Concepts with C Lab</td>
-<td>1</td>
-<td>A+</td>
-<td>9</td>
-</tr>
-
-<tr>
-<td>3</td>
-<td>25BCA011C03</td>
-<td>Computer Fundamentals</td>
-<td>3</td>
-<td>B</td>
-<td>6</td>
-</tr>
-
-<tr>
-<td>4</td>
-<td>25BCA011C04</td>
-<td>Web Technologies</td>
-<td>3</td>
-<td>B+</td>
-<td>7</td>
-</tr>
-
-<tr>
-<td>5</td>
-<td>25BCA011C05(P)</td>
-<td>Web Technologies Lab</td>
-<td>1</td>
-<td>A</td>
-<td>8</td>
-</tr>
-
-<tr>
-<td>6</td>
-<td>25ENGLOAEC1</td>
-<td>Communicative English I</td>
-<td>3</td>
-<td>B+</td>
-<td>7</td>
-</tr>
-
-<tr>
-<td>7</td>
-<td>25LMSU0SEC2(P)</td>
-<td>Leadership and Management Skills</td>
-<td>3</td>
-<td>B</td>
-<td>6</td>
-</tr>
-
-<tr>
-<td>8</td>
-<td>25SOMS0MDC1</td>
-<td>Fundamentals of Entrepreneurship</td>
-<td>3</td>
-<td>B</td>
-<td>6</td>
-</tr>
-
-<tr>
-<td>9</td>
-<td>25DOAS0VAC1</td>
-<td>Environment Science</td>
-<td>3</td>
-<td>B</td>
-<td>6</td>
-</tr>
-
-<tr>
-<td>10</td>
-<td>25BCAI11E01</td>
-<td>Python & Clean Coding</td>
-<td>2</td>
-<td>P</td>
-<td>4</td>
-</tr>
-
-<tr>
-<td>11</td>
-<td>25BCAI11E02(P)</td>
-<td>Python & Clean Coding Lab</td>
-<td>2</td>
-<td>A</td>
-<td>8</td>
-</tr>
-
-<tr class="sgpa-row">
-<td colspan="5"><b>SGPA</b></td>
-<td><b>6.29</b></td>
-</tr>
-
-`;
-
-}
-
-else{
-
-semester="SECOND";
-examYear="June, 2026";
-
-table=`
-
-<tr>
-<td>1</td>
-<td>25BCA012C01</td>
-<td>Object Oriented Programming using C++</td>
-<td>3</td>
-<td>B+</td>
-<td>7</td>
-</tr>
-
-<tr>
-<td>2</td>
-<td>25BCA012C02(P)</td>
-<td>Object Oriented Programming using C++ Lab</td>
-<td>1</td>
-<td>A</td>
-<td>8</td>
-</tr>
-
-<tr>
-<td>3</td>
-<td>25BCA012C03</td>
-<td>Mathematical Structures for Computer Applications</td>
-<td>3</td>
-<td>B</td>
-<td>6</td>
-</tr>
-
-<tr>
-<td>4</td>
-<td>25BCA012C04</td>
-<td>Software Engineering</td>
-<td>3</td>
-<td>B+</td>
-<td>7</td>
-</tr>
-
-<tr>
-<td>5</td>
-<td>25BCA012C05</td>
-<td>Digital Electronics & Logic Design</td>
-<td>3</td>
-<td>A</td>
-<td>8</td>
-</tr>
-
-<tr>
-<td>6</td>
-<td>25ENGLOAEC2</td>
-<td>Communicative English II</td>
-<td>3</td>
-<td>B+</td>
-<td>7</td>
-</tr>
-
-<tr>
-<td>7</td>
-<td>25LMSU0SEC3(P)</td>
-<td>Professional Skills</td>
-<td>3</td>
-<td>B</td>
-<td>6</td>
-</tr>
-
-<tr>
-<td>8</td>
-<td>25SOMS0MDC2</td>
-<td>Online Marketing Fundamentals</td>
-<td>3</td>
-<td>B+</td>
-<td>7</td>
-</tr>
-
-<tr>
-<td>9</td>
-<td>25DOAS0VAC2</td>
-<td>Yogic Science</td>
-<td>3</td>
-<td>A</td>
-<td>8</td>
-</tr>
-
-<tr>
-<td>10</td>
-<td>25BCAI12E01</td>
-<td>Machine Learning</td>
-<td>2</td>
-<td>A</td>
-<td>8</td>
-</tr>
-
-<tr>
-<td>11</td>
-<td>25BCAI12E02(P)</td>
-<td>Machine Learning Lab</td>
-<td>2</td>
-<td>A+</td>
-<td>9</td>
-</tr>
-
-<tr class="sgpa-row">
-<td colspan="5"><b>SGPA</b></td>
-<td><b>6.55</b></td>
-</tr>
-
-`;
-
-}
-
-document.getElementById("marks").innerHTML=table;
-document.getElementById("semester").innerHTML=semester;
-document.getElementById("examYear").innerHTML=examYear;
-
-</script>
-
-</body>
-</html>
+</body></html>
