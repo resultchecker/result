@@ -1,95 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Exam Result Portal</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CT University Result Portal</title>
+
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f2f4f8;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
-.container {
-  width: 390px;
-  background: white;
-  padding: 20px;
-  margin: 40px auto;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+body{
+    background:#eef2f7;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 15px;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.container{
+    width:100%;
+    max-width:430px;
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
-select, input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background: #f1f1f1;
-  font-size: 15px;
+.logo{
+    text-align:center;
+    margin-bottom:15px;
 }
 
-label {
-  font-weight: bold;
-  margin-top: 10px;
-  display: block;
+.logo img{
+    width:180px;
+    max-width:100%;
 }
 
-button {
-  width: 100%;
-  padding: 14px;
-  background: #3b82f6;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 12px;
-  margin-top: 20px;
-  cursor: pointer;
+h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#000;
+    font-size:32px;
 }
 
-button:hover {
-  background: #2563eb;
+label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+select,
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+    background:#f4f4f4;
+}
+
+button{
+    width:100%;
+    margin-top:22px;
+    padding:14px;
+    background:#4d7bf3;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#2d5fe3;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    font-size:12px;
+    color:#777;
+}
+
+@media(max-width:500px){
+
+.container{
+    padding:20px;
+}
+
+h2{
+    font-size:26px;
+}
+
+.logo img{
+    width:150px;
+}
+
 }
 </style>
+
+</head>
+
 <body>
-<img src="https://resources.saylor.org/wwwresources/wp-content/uploads/20200827154514/CT-Complete-Logo-Png.png" alt="CT University Logo"
-  width="180"
-  height="80">
+
 <div class="container">
-  <h2>Exam Result</h2>
 
-  <select id="year">
-    <option value="">Select Year</option>
-    <option>2024</option>
-    <option>2025</option>
-  </select>
+<div class="logo">
+<img src="https://resources.saylor.org/wwwresources/wp-content/uploads/20200827154514/CT-Complete-Logo-Png.png" alt="CT University Logo">
+</div>
 
-  <select id="month">
-    <option value="">Select Exam Month</option>
-    <option>JUNE</option>
-    <option>DECEMBER</option>
-  </select>
+<h2>Exam Result</h2>
 
-  <select id="type">
-    <option value="">Select Exam Type</option>
-    <option>ETE</option>
-  </select>
+<select id="year">
+<option value="">Select Year</option>
+<option value="2024">2024</option>
+<option value="2025">2025</option>
+<option value="2026">2026</option>
+</select>
 
-  <label>Registration Number</label>
-  <input type="text" id="reg" placeholder="Enter your Registration">
+<select id="month">
+<option value="">Select Exam Month</option>
+<option value="JUNE">JUNE</option>
+<option value="DECEMBER">DECEMBER</option>
+</select>
 
-  <label>Date of Birth</label>
-  <input type="date" id="dob">
+<select id="type">
+<option value="">Select Exam Type</option>
+<option value="ETE">ETE</option>
+</select>
 
-  <button onclick="searchResult()">Search</button>
+<label>Registration Number</label>
+
+<input
+type="text"
+id="reg"
+placeholder="Enter your Registration Number"
+maxlength="8">
+
+<label>Date of Birth</label>
+
+<input
+type="date"
+id="dob">
+
+<button onclick="searchResult()">
+Search
+</button>
+
+<div class="footer">
+© CT University Result Portal
+</div>
+
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
